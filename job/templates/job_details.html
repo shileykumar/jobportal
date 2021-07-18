@@ -1,0 +1,38 @@
+{% load static %}
+
+{% block body %}
+{% include 'user_navigation.html' %}
+<style>
+    tr{
+        text-align: center;
+    }
+</style>
+<h2 style="color:rgb(95, 204, 189); margin-left: 30px; margin-top: 10px;">Job Details ....</h2>
+<hr>
+<div >
+<div class="container mb-2">
+    <div class="row">
+        <div class="col-md-4">
+            <img src="{{job.image.url}}" style="width: 160px; height: 160px; border-radius: 100%;" class="shadow-lg">
+        </div>
+        <div class="col-md-5">
+            <h3>Title: <span style="color: rgb(125, 118, 170);">{{job.title}}</span></h3>
+            <h4>Compnay: {{job.recruiter.company}} <a href="{% url 'user_show_latest_job' %}">(View All Jobs)</a></h4>
+            <p>Skills Required: <span style="color: slateblue;">{{job.skills}}</span></p>
+            <p>Required Experience: <span>{{job.experience}}</span> year</p>
+            <p><i class="fa fa-calendar mr-2"></i>{{job.creation_date}}</p>
+            <p>Start date for apply: {{job.start_date}}</p>
+            <p>Last date for apply: {{job.end_date}}</p>
+            <p>Salary: <i class="fa fa-inr"></i>{{job.salary}}</p>
+            <p><a href="#"><i class="fa fa-map-marker mr-2"></i>{{job.location}}</a></p>
+            <a href="{% url 'apply_for_job' job.id %}" class="btn btn-success">Apply for this job</a>
+        </div>
+        <div class="col-md-3 shadow-lg">
+            <h4>Description:</h4>
+            <p>{{job.description}}</p>
+        </div>
+
+    </div>
+</div>
+</div>
+{% endblock %}

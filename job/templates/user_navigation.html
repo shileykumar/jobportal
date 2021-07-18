@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Job Portal</title>
+
+    <style>
+        .nav-link{
+            color:white !important;
+            margin-right:5px
+        }
+
+        .nav-link:hover{
+            font-weight:bold;
+            background-color:light-gray;
+            border-radius:10px
+        }
+
+        .navbar-brand:hover{
+            font-weight:bold
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <img src="{% static 'images/jp2.jpg' %}" style="width:140pb; height:80px">
+            </div>
+            <div class="col-sm-6 mt-10 text-center">
+               <span style="font-weight:bold; font-size:30px">
+                    <span style="color:red">Online Job</span>
+                    <span style="color:green">Portal </span>
+               </span>
+            </div>
+            <div class="col-sm-3 mt-10" style="padding-left:10%">
+                <span style="font-weight:bold; font-size:30px">
+                    <span><i class="fa fa-twitter "></i></span>
+                    <span><i class="fa fa-linkedin pl-1"></i></span>
+                    <span><i class="fa fa-instagram pl-1"></i></span>
+                    <span><i class="fa fa-telegram pl-1"></i></span>
+                </span>
+            </div>
+        </div>
+    </div>
+    <nav class="navbar navbar-expand-sm" style="background-color:gray">
+        <a class="navbar-brand pl-5 font-weight-bold text-white">Job Portal</a>
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'user_home' %}" style="margin-left:280px"><i class="fa fa-home  mr-1"></i>Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'user_show_latest_job' %}" ><i class="fa fa-briefcase mr-1"></i>Jobs</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'user_change_pwd' %}" ><i class="fa fa-key mr-1"></i>Change Password</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout' %}" ><i class="fa fa-sign-out mr-1"></i>Logout</a>
+            </li>
+            
+        </ul>
+        <a class="navbar-brand pl-5 font-weight-bold text-white">{{request.user.first_name}} {{request.user.last_name}}</a>
+    </nav>
+</body>
+</html>

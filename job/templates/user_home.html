@@ -1,0 +1,97 @@
+{% load static %}
+
+{% block body %}
+{% include 'user_navigation.html' %}
+
+
+    <h2 style="color:rgb(95, 204, 189); margin-left: 30px; margin-top: 10px;">User Profile....</h2>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9">
+                <form class=" mt-5" name="signup" method="POST"  enctype="multipart/form-data" style="background-color: rgb(212, 219, 224);">
+                    {% csrf_token %}
+                    
+                    <div class="form-row ml-2 mr-2">
+                        <div class="form-group col-md-6">
+                            <label>First Name</label>
+                            <input type="text" class="form-control" name="fname" value="{{student.user.first_name}}" required>
+                        </div>
+            
+                        <div class="form-group col-md-6">
+                            <label>Last Name</label>
+                            <input type="text" class="form-control" name="lname" value="{{student.user.last_name}}">
+                        </div>
+                    </div>
+                    <div class="form-row ml-2 mr-2">
+                        <div class="form-group col-md-12">
+                            <label>Contact</label>
+                            <input type="text" class="form-control" name="contact" value="{{student.mobile}}" required>
+                        </div>
+                        
+                    </div>
+                    <div class="form-row ml-2 mr-2">
+                        <div class="form-group col-md-12">
+                            <label>Email</label>
+                            <input type="text" class="form-control" name="email" value="{{student.user.username}}" readonly required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row ml-2 mr-2">
+                        <div class="form-group col-md-6">
+                            <label>Gender</label>
+                            <div>
+                                {% if student.gender == 'Male' %}
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" name="gender" id="customRadioInline1" class="custom-control-input" value="Male" checked>
+                                    <label for="customRadioInline1" class="custom-control-label">Male</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" name="gender" id="customRadioInline2" class="custom-control-input" value="Female">
+                                    <label for="customRadioInline2" class="custom-control-label">Female</label>
+                                </div>
+                                {% else %}
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" name="gender" id="customRadioInline1" class="custom-control-input" value="Male">
+                                    <label for="customRadioInline1" class="custom-control-label">Male</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" name="gender" id="customRadioInline2" class="custom-control-input" value="Female" checked>
+                                    <label for="customRadioInline2" class="custom-control-label">Female</label>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+            
+                        <div class="form-group col-md-6">
+                            <label>Image</label>
+                            <input type="file" class="form-control" name="image" accept="image/*">
+                        </div>
+                    </div>
+            
+                    <input type="submit" class="btn btn-primary mb-2 ml-2" style="margin-top:8px"  >
+                    
+                </form>
+            
+            </div>
+            <div class="col-sm-3 mt-5 text-center">
+                <img src="{{student.image.url}}" style="width: 120px; height: 120px;">
+                <h3 class="mt-2">{{student.user.first_name}} {{student.user.last_name}}</h3>
+            </div>
+        </div>
+    </div>
+    {% include 'footer.html' %}
+
+    {% ifequal error 'no' %}
+    <script>
+        alert("Updated successfully!");
+        window.location=('{% url 'user_home' %}')
+    </script>
+    {% endifequal %}
+
+    {% ifequal error 'yes' %}
+    <script>
+        alert("Something went wrong, Try again ");
+        
+    </script>
+    {% endifequal %}
+{% endblock %}

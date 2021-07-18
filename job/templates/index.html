@@ -1,0 +1,86 @@
+{% load static %}
+
+{% block body %}
+{% include 'navigation.html' %}
+
+<style>
+    .container{
+        max-width: 98%;
+    }
+
+    .content{
+        text-align: center;
+        position: absolute;
+        color: white;
+        height: 30px;
+        width: 91%;
+    }
+</style>
+
+    <div class="container-fluid" style="margin-top:1%">
+        <img src="{% static 'images/jp5.jpg' %}" style="height:450px; width:100%">
+    </div>
+
+    <div class="container" style="background-color:rgb(160, 158, 158); height:570px; margin-top:5px">
+        <h1 class="text-center text-white">------| OUR PLACED STUDENT |------</h1>
+        <div class="row mt-5">
+            <div class="col-sm-3">
+                <img src="{% static 'images/user.jpg' %}" style="width: 100%; height: 200px; border-radius: 50%;">
+                <div class="content">
+                    <p>TCS</p>
+                </div>
+            </div>
+
+            <div class="col-sm-3">
+                <img src="{% static 'images/user.jpg' %}" style="width: 100%; height: 200px; border-radius: 50%;">
+                <div class="content">
+                    <p>Infosys</p>
+                </div>
+            </div>
+
+            <div class="col-sm-3">
+                <img src="{% static 'images/user.jpg' %}" style="width: 100%; height: 200px; border-radius: 50%;">
+                <div class="content">
+                    <p>HCL</p>
+                </div>
+            </div>
+
+            <div class="col-sm-3">
+                <img src="{% static 'images/user.jpg' %}" style="width: 100%; height: 200px; border-radius: 50%;">
+                <div class="content">
+                    <p>Wipro</p>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-sm-3">
+                <img src="{% static 'images/user.jpg' %}" style="width: 100%; height: 200px; border-radius: 50%;">
+                <div class="content">
+                    <p>Google</p>
+                </div>
+            </div>
+
+            <div class="col-sm-3">
+                <img src="{% static 'images/user.jpg' %}" style="width: 100%; height: 200px; border-radius: 50%;">
+                <div class="content">
+                    <p>SGS</p>
+                </div>
+            </div>
+
+            <div class="col-sm-3">
+                <img src="{% static 'images/user.jpg' %}" style="width: 100%; height: 200px; border-radius: 50%;">
+                <div class="content">
+                    <p>Amazon</p>
+                </div>
+            </div>
+
+            <div class="col-sm-3">
+                <img src="{% static 'images/user.jpg' %}" style="width: 100%; height: 200px; border-radius: 50%;">
+                <div class="content">
+                    <p>Facebook</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include 'footer.html' %}
+{% endblock %}

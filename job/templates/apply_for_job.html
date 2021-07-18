@@ -1,0 +1,43 @@
+{% load static %}
+
+{% block body %}
+{% include 'user_navigation.html' %}
+<style>
+    tr{
+        text-align: center;
+    }
+</style>
+<h2 style="color:rgb(95, 204, 189); margin-left: 30px; margin-top: 10px;">Job Details ....</h2>
+<hr>
+
+<div class="container mb-2">
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-row">
+            <label style="font-weight: bold;">Upload Resume</label>
+            <input type="file" class="form-control" name="resume">
+        </div>
+        <button type="submit" class="btn btn-success mt-2" >Submit</button>
+    </form>
+</div>
+{% ifequal error 'close' %}
+<script>
+    alert('Application has closed!');
+    window.location=('{% url 'user_show_latest_job' %}')
+</script>
+{% endifequal %}
+
+{% ifequal error 'not_open' %}
+<script>
+    alert('Application is not open!');
+    window.location=('{% url 'user_show_latest_job' %}')
+</script>
+{% endifequal %}
+
+{% ifequal error 'ok' %}
+<script>
+    alert('Application submitted successfuly!');
+    window.location=('{% url 'job_details' job.id %}')
+</script>
+{% endifequal %}
+{% endblock %}

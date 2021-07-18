@@ -1,0 +1,53 @@
+{% load static %}
+
+{% block body %}
+{% include 'recruiter_navigation.html' %}
+
+<script>
+    function checkpwd(){
+        if (document.changepwd.newpwd.value=!document.changepwd.cnewpwd.value){
+            alert("New password and confirm password dose not match!");
+            document.changepwd.cnewpwd.focus();
+            return false;
+        }
+        return true;
+    }
+</script>
+    <h2 style="color:rgb(95, 204, 189); margin-left: 30px; margin-top: 10px;">Change Password Recruiter....</h2>
+   
+    <form class="container mt-5" method="POST" style="background-color: rgb(212, 219, 224);" onsubmit="return checkpwd" name="changepwd">
+        {% csrf_token %}
+        <label><b>Current Password</b></label>
+        <input type="password" class="form-control" name="currentpwd" required>
+        
+        <label><b>New Password</b></label>
+        <input type="password" class="form-control" name="newpwd" required>
+
+        <label><b>Confirm New Password</b></label>
+        <input type="password" class="form-control" name="cnewpwd" required>
+        
+        <input type="submit" class="btn btn-primary" style="margin-top: 8px;">
+    </form>
+
+    {% ifequal error 'no' %}
+    <script>
+        alert("Password changed successfully!");
+        window.location=('{% url 'logout' %}')
+    </script>
+    {% endifequal %}
+
+    {% ifequal error 'yes' %}
+    <script>
+        alert("Something went wrong! ");
+        
+    </script>
+    {% endifequal %}
+
+    {% ifequal error 'not' %}
+    <script>
+        alert("Current password is wrong! ");
+        
+    </script>
+    {% endifequal %}
+
+{% endblock %}

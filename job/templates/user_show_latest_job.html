@@ -1,0 +1,50 @@
+{% load static %}
+
+{% block body %}
+{% include 'user_navigation.html' %}
+<style>
+    tr{
+        text-align: center;
+    }
+</style>
+<h2 style="color:rgb(95, 204, 189); margin-left: 30px; margin-top: 10px;">Jobs ....</h2>
+<hr>
+<div class="container">
+    <table class="table table-hover" id="example">
+        <thead>
+            <tr style="background-color: lightsteelblue;">
+                <th>S. No.</th>
+                <th>Company</th>
+                <th>Job Title</th>
+                <th>Required Skills</th>
+                <th>Location</th>
+                <th>Post Date</th>
+                <th>End Date</th>
+                <th>Action</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in job %}
+            <tr>
+                <td>{{forloop.counter}}  </td>
+                <td>{{i.recruiter.company}}</td>
+                <td>{{i.title}}</td>
+                <td>{{i.skills}}</td>
+                <td>{{i.location}}</td>
+                <td>{{i.start_date}}</td>
+                <td>{{i.end_date}}</td>
+
+                {% if i.id in li %}
+                <td><a href="#" class="btn btn-danger" >Applied</a></td>
+                
+                {% else %}
+                <td><a href="{% url 'job_details' i.id %}" class="btn btn-primary">Apply</a></td>
+                {% endif %}
+                
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

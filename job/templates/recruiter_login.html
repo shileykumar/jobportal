@@ -1,0 +1,37 @@
+{% load static %}
+
+{% block body %}
+{% include 'navigation.html' %}
+    <h2 style="color:rgb(95, 204, 189); margin-left: 30px; margin-top: 10px;">Recruiter login here....</h2>
+    <hr>
+    <form class="container mt-5" method="POST" style="background-color: rgb(212, 219, 224);">
+        {% csrf_token %}
+        <label><b>Username</b></label>
+        <input type="text" class="form-control" name="uname" placeholder="Enter username">
+        <label><b>Password</b></label>
+        <input type="password" class="form-control" name="pwd" placeholder="Enter password">
+        <input type="submit" class="btn btn-primary" style="margin-top: 8px;" value="Login">
+        <a href="{% url 'recruiter_signup' %}" class="btn btn-secondary" style="margin-top: 8px;">Create account</a>
+    </form>
+
+    {% ifequal error 'no' %}
+    <script>
+        alert("Login successfully!");
+        window.location=('{% url 'recruiter_home' %}')
+    </script>
+    {% endifequal %}
+
+    {% ifequal error 'yes' %}
+    <script>
+        alert("invailid username or password! ");
+        
+    </script>
+    {% endifequal %}
+
+    {% ifequal error 'not' %}
+    <script>
+        alert("Your Login status is pending! ");
+        
+    </script>
+    {% endifequal %}
+{% endblock %}

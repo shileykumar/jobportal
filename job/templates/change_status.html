@@ -1,0 +1,33 @@
+{% load static %}
+
+{% block body %}
+{% include 'admin_navigation.html' %}
+    <h2 style="color:rgb(95, 204, 189); margin-left: 30px; margin-top: 10px;">Change Status....</h2>
+   
+    <form class="container mt-5" method="POST" style="background-color: rgb(212, 219, 224);">
+        {% csrf_token %}
+        <label><b>Recruiter Name</b></label>
+        <input type="text" class="form-control" name="uname" value="{{data.user.first_name}} {{data.user.last_name}}">
+        <label><b>Status</b></label>
+        <select name="status" id="" class="form-control">
+            <option value="Accept">Accept</option>
+            <option value="Reject">Reject</option>
+        </select>
+        <input type="submit" class="btn btn-primary" style="margin-top: 8px;">
+    </form>
+
+    {% ifequal error 'no' %}
+    <script>
+        alert("Status changed successfully!");
+        window.location=('{% url 'recruiter_pending' %}')
+    </script>
+    {% endifequal %}
+
+    {% ifequal error 'yes' %}
+    <script>
+        alert("invailid username or password! ");
+        
+    </script>
+    {% endifequal %}
+
+{% endblock %}

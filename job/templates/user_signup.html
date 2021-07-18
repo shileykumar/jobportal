@@ -1,0 +1,95 @@
+{% load static %}
+
+{% block body %}
+{% include 'navigation.html' %}
+
+    <script>
+        function checkpass(){
+            if(document.signup.pwd.value!=document.signup.cpwd.value){
+                alert(' Please Enter Password and Confirm Password same')
+                document.signup.cpwd.focus();
+                return false;
+            }
+            return true;
+        }
+    </script>
+
+    <h2 style="color:rgb(95, 204, 189); margin-left: 30px; margin-top: 10px;">User Signup....</h2>
+    <form class="container mt-5" name="signup" method="POST" onsubmit="return checkpass();" enctype="multipart/form-data" style="background-color: rgb(212, 219, 224);">
+        {% csrf_token %}
+        
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label>First Name</label>
+                <input type="text" class="form-control" name="fname" placeholder="Enter First Name" required>
+            </div>
+
+            <div class="form-group col-md-6">
+                <label>Last Name</label>
+                <input type="text" class="form-control" name="lname" placeholder="Enter Last Name">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <label>Contact</label>
+                <input type="text" class="form-control" name="contact" placeholder="Enter Contact Number" required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <label>Email</label>
+                <input type="text" class="form-control" name="email" placeholder="Enter Email address" required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label>Password</label>
+                <input type="password" class="form-control" name="pwd" placeholder="Enter Password" required>
+            </div>
+
+            <div class="form-group col-md-6">
+                <label>Confirm Password</label>
+                <input type="password" class="form-control" name="cpwd" placeholder="Enter Confirm Password" required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label>Gender</label>
+                <div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" name="gender" id="customRadioInline1" class="custom-control-input" value="Male">
+                        <label for="customRadioInline1" class="custom-control-label">Male</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" name="gender" id="customRadioInline2" class="custom-control-input" value="Female">
+                        <label for="customRadioInline2" class="custom-control-label">Female</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group col-md-6">
+                <label>Image</label>
+                <input type="file" class="form-control" name="image" required accept="image/*">
+            </div>
+        </div>
+
+        <input type="submit" class="btn btn-primary mb-2" style="margin-top:8px" value="SignUp" >
+        <a href="{% url 'user_login' %}" class="btn btn-secondary mb-2" style="margin-top: 8px;">Login</a>
+    </form>
+
+    {% include 'footer.html' %}
+
+    {% ifequal error 'no' %}
+    <script>
+        alert("Account created successfully!");
+        window.location=('{% url 'user_login' %}')
+    </script>
+    {% endifequal %}
+
+    {% ifequal error 'yes' %}
+    <script>
+        alert("Something went wrong, Try again ");
+        
+    </script>
+    {% endifequal %}
+{% endblock %}

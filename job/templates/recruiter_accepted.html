@@ -1,0 +1,39 @@
+{% load static %}
+
+{% block body %}
+{% include 'admin_navigation.html' %}
+<h2 style="color:rgb(95, 204, 189); margin-left: 30px; margin-top: 10px;">Pending Accepted....</h2>
+<hr>
+<div class="container">
+    <table class="table table-hover" id="example">
+        <thead>
+            <tr style="background-color: lightsteelblue;">
+                <th>S. No.</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Contact</th>
+                <th>Gender</th>
+                <th>Company</th>
+                <th>Status</th>
+                <th>Image</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in data %}
+            <tr>
+                <td>{{forloop.counter}}  </td>
+                <td>{{i.user.first_name}} {{i.user.last_name}}</td>
+                <td>{{i.user.username}}</td>
+                <td>{{i.mobile}}</td>
+                <td>{{i.gender}}</td>
+                <td>{{i.company}}</td>
+                <td>{{i.status}}</td>
+                <td><img src="{{i.image.url}}" style="width: 80px; height: 80px;" ></td>
+                <td><a href="{% url 'change_status' i.id %}" class="btn btn-success" >Change Status</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

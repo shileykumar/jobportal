@@ -1,0 +1,46 @@
+{% load static %}
+
+{% block body %}
+{% include 'navigation.html' %}
+<style>
+    tr{
+        text-align: center;
+    }
+</style>
+<h2 style="color:rgb(95, 204, 189); margin-left: 30px; margin-top: 10px;">Latest Job ....</h2>
+<hr>
+<div class="container">
+    <table class="table table-hover" id="example">
+        <thead>
+            <tr style="background-color: lightsteelblue;">
+                <th>S. No.</th>
+                <th>Company</th>
+                <th>Job Title</th>
+                <th>Required Skills</th>
+                <th>Location</th>
+                <th>Post Date</th>
+                <th>End Date</th>
+                <th>Action</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in data %}
+            <tr>
+                <td>{{forloop.counter}}  </td>
+                <td>{{i.recruiter.company}}</td>
+                <td>{{i.title}}</td>
+                <td>{{i.skills}}</td>
+                <td>{{i.location}}</td>
+                <td>{{i.start_date}}</td>
+                <td>{{i.end_date}}</td>
+                
+                <td><a href="{% url 'user_login' %}" class="btn btn-primary" >Login To Apply</a>
+                    
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
